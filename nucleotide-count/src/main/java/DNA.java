@@ -1,36 +1,31 @@
-import java.util.HashMap;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+
+import static java.lang.Math.toIntExact;
 
 public class DNA {
 
     private final String sequence;
-    private final HashMap<Character, Integer> nucleotideMapping;
+    private final List<Character> nucleotides = Arrays.asList('A', 'C', 'G', 'T');
 
     public DNA(String sequence) {
         this.sequence = sequence;
-        nucleotideMapping = new HashMap<>();
-        nucleotideMapping.put('A', 0);
-        nucleotideMapping.put('C', 0);
-        nucleotideMapping.put('G', 0);
-        nucleotideMapping.put('T', 0);
     }
 
-    public long count(char a) {
-        if (!nucleotideMapping.containsKey(a)) {
+    public int count(char a) {
+        if (!nucleotides.contains(a)) {
             throw new IllegalArgumentException();
         }
-        return sequence.chars()
+        return toIntExact(sequence.chars()
                 .mapToObj(i -> (char) i)
-                .filter(c -> c == a).count();
+                .filter(c -> c == a).count());
     }
 
     public Map<Character, Integer> nucleotideCounts() {
-        sequence.chars()
-                .mapToObj(i -> (char) i)
-                .forEach(
-                        c -> nucleotideMapping.put(c, nucleotideMapping.get(c) + 1)
-                );
-
-        return nucleotideMapping;
+        return nucleotides.stream()
+                .collect(Collectors.toMap(Function.identity(), this::count));
     }
 }
