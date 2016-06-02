@@ -3,17 +3,18 @@ import java.util.stream.Collectors;
 
 public class Anagram {
 
-    private final String diaper;
+    private final String input;
 
-    public Anagram(String diaper) {
-        this.diaper = diaper;
+    public Anagram(String input) {
+        this.input = input;
     }
 
     public List<String> match(List<String> strings) {
+        String sortedInput = sort(input);
         return strings.stream()
-                .filter(s -> !s.equalsIgnoreCase(diaper))
-                .filter(s -> s.length() == diaper.length())
-                .filter(s -> sort(diaper).equals(sort(s)))
+                .filter(s -> !s.equalsIgnoreCase(input))
+                .filter(s -> s.length() == input.length())
+                .filter(s -> sortedInput.equals(sort(s)))
                 .collect(Collectors.toList());
     }
 
