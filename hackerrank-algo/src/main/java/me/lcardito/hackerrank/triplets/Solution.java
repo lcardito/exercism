@@ -1,7 +1,6 @@
 package me.lcardito.hackerrank.triplets;
 
 import java.util.Scanner;
-import java.util.concurrent.atomic.AtomicInteger;
 
 public class Solution {
 
@@ -15,21 +14,10 @@ public class Solution {
         int b1 = in.nextInt();
         int b2 = in.nextInt();
 
-        AtomicInteger aScore = new AtomicInteger(0);
-        AtomicInteger bScore = new AtomicInteger(0);
-
-        isAScore(a0, b0, aScore, bScore);
-        isAScore(a1, b1, aScore, bScore);
-        isAScore(a2, b2, aScore, bScore);
+        int aScore = ((a0 > b0) ? 1 : 0) + ((a1 > b1) ? 1 : 0) + ((a2 > b2) ? 1 : 0);
+        int bScore = ((a0 < b0) ? 1 : 0) + ((a1 < b1) ? 1 : 0) + ((a2 < b2) ? 1 : 0);
 
         System.out.print(aScore + " " + bScore);
     }
 
-    private static void isAScore(int a, int b, AtomicInteger aScore, AtomicInteger bScore) {
-        if (a > b) {
-            aScore.incrementAndGet();
-        } else if (a < b) {
-            bScore.incrementAndGet();
-        }
-    }
 }
