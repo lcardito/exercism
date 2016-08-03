@@ -34,6 +34,8 @@ public class Solution {
             q--;
         }
 
+        sc.close();
+
         for (int i : queries) {
             System.out.println(array.get(i));
         }
