@@ -1,6 +1,5 @@
 package me.lcardito.hackerrank.sharlock;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Solution {
@@ -10,7 +9,6 @@ public class Solution {
         int tests = in.nextInt();
         in.nextLine();
 
-        ArrayList<int[]> inputs = new ArrayList<>();
         while (tests > 0) {
             int n = in.nextInt();
             in.nextLine();
@@ -19,18 +17,14 @@ public class Solution {
             for (int i = 0; i < n; i++) {
                 input[i] = in.nextInt();
             }
-            inputs.add(input);
-            tests--;
-        }
-        in.close();
-
-        inputs.stream().forEach(x -> {
-            if (x.length == 1 || exist(x)) {
+            if (input.length == 1 || exist(input)) {
                 System.out.println("YES");
             } else {
                 System.out.println("NO");
             }
-        });
+            tests--;
+        }
+        in.close();
     }
 
     private static boolean exist(int[] input) {
