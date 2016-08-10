@@ -35,24 +35,16 @@ public class Solution {
 
     private static boolean exist(int[] input) {
 
-        for(int i = 0; i < input.length - 1; i++) {
-            int leftSum = 0, rightSum = 0;
+        int leftIndex = 0, rightIndex = input.length - 1;
+        int leftSum = 0 , rightSum = 0;
 
-            int j = i - 1;
-            while (j >= 0) {
-                leftSum += input[j];
-                j--;
-            }
-
-            int k = i + 1;
-            while (k <= input.length - 1 && rightSum < leftSum) {
-                rightSum += input[k];
-                k++;
-                if (rightSum == leftSum && k == input.length) {
-                    return true;
-                }
-            }
+        while (leftIndex < rightIndex) {
+            if (leftSum > rightSum)
+                rightSum = rightSum + input[rightIndex--];
+            else
+                leftSum = leftSum + input[leftIndex++];
         }
-        return false;
+
+        return leftSum == rightSum;
     }
 }
