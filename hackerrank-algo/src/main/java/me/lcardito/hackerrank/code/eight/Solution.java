@@ -19,8 +19,9 @@ class Solution {
         }
         while (in.hasNext()) {
             String s = in.next();
-            if (phoneBook.containsKey(s)) {
-                System.out.printf("%s=%d\n", s, phoneBook.get(s));
+            Integer phoneRequested = phoneBook.get(s);
+            if (phoneRequested != null) {
+                System.out.printf("%s=%d\n", s, phoneRequested);
             } else {
                 System.out.println("Not found");
             }
