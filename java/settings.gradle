@@ -9,4 +9,4 @@ include 'hello-world'
 include 'nucleotide-count'
 include 'pangram'
 include 'word-count'
-
+include 'two-fer'
