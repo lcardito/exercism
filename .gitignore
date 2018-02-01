@@ -5,3 +5,4 @@
 **/build/
 **/*.keep
 **/target/
+.DS_Store

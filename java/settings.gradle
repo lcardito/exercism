@@ -1,0 +1,12 @@
+rootProject.name = 'exercism-java'
+
+include 'anagram'
+include 'bob'
+include 'etl'
+include 'hackerrank-algo'
+include 'hamming'
+include 'hello-world'
+include 'nucleotide-count'
+include 'pangram'
+include 'word-count'
+
