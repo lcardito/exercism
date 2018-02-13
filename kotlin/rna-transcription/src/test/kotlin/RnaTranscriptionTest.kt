@@ -1,8 +1,10 @@
 import org.junit.Test
-import org.junit.Ignore
+import org.junit.runner.RunWith
+import org.junit.runners.Parameterized
 import kotlin.test.assertEquals
 
-class RnaTranscriptionTest {
+@RunWith(Parameterized::class)
+class RnaTranscriptionTest(private val testFunction: (String) -> String) {
 
     /*
       In Kotlin functions can be declared at top level in a file, meaning
@@ -13,29 +15,37 @@ class RnaTranscriptionTest {
 
      */
 
+    companion object {
+        @JvmStatic
+        @Parameterized.Parameters
+        fun data() : List<(String) -> String> {
+            return listOf(::transcribeToRna, ::transcribeToRnaMapReduce)
+        }
+    }
+
     @Test
     fun cytosineComplementIsGuanine() {
-        assertEquals("G", transcribeToRna("C"))
+        assertEquals("G", testFunction("C"))
     }
 
     @Test
     fun guanineComplementIsCytosine() {
-        assertEquals("C", transcribeToRna("G"))
+        assertEquals("C", testFunction("G"))
     }
 
     @Test
     fun thymineComplementIsAdenine() {
-        assertEquals("A", transcribeToRna("T"))
+        assertEquals("A", testFunction("T"))
     }
 
     @Test
     fun adenineComplementIsUracil() {
-        assertEquals("U", transcribeToRna("A"))
+        assertEquals("U", testFunction("A"))
     }
 
     @Test
     fun rnaTranscription() {
-        assertEquals("UGCACCAGAAUU", transcribeToRna("ACGTGGTCTTAA"))
+        assertEquals("UGCACCAGAAUU", testFunction("ACGTGGTCTTAA"))
     }
 
 }
