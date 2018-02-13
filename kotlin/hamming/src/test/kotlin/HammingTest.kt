@@ -12,21 +12,25 @@ class HammingTest {
     @Test
     fun noDistanceBetweenEmptyStrands() {
         assertEquals(0, Hamming.compute("", ""))
+        assertEquals("", Hamming.diff("", ""))
     }
 
     @Test
     fun noDistanceBetweenShortIdenticalStrands() {
         assertEquals(0, Hamming.compute("A", "A"))
+        assertEquals("", Hamming.diff("", ""))
     }
 
     @Test
     fun noDistanceBetweenLongIdenticalStrands() {
         assertEquals(0, Hamming.compute("GGACTGA", "GGACTGA"))
+        assertEquals("", Hamming.diff("GGACTGA", "GGACTGA"))
     }
 
     @Test
     fun completeDistanceInSingleNucleotideStrand() {
         assertEquals(1, Hamming.compute("A", "G"))
+        assertEquals("G", Hamming.diff("A", "G"))
     }
 
     @Test
@@ -47,6 +51,7 @@ class HammingTest {
     @Test
     fun smallDistanceInLongStrand() {
         assertEquals(2, Hamming.compute("ACCAGGG", "ACTATGG"))
+        assertEquals("  T T  ", Hamming.diff("ACCAGGG", "ACTATGG"))
     }
 
     @Test
